@@ -1,0 +1,59 @@
+<mvc:View controllerName="sapips.training.jsonbinding.controller.JSONBinding"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m">
+    <Page id ="page" title ="{i18n>title}">
+        <Panel id ="idPanel" headerText ="{i18n>panel1}" class ="sapUiResponsiveMargin" width ="auto">
+            <f:SimpleForm id ="idSimpleFormEID" editable ="true" layout ="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" singleContainerFullSize="false" class="sapUiMediumMargin">
+                <f:content>
+                    <Label id="idLblEID" text="{i18n>lblbeid}"/>
+                    <Input id="idInptEID" enabled="true" value="" submit="onPressInput" />
+                    <Label id="idLblEnabled" text="{i18n>lblenabled}" />
+                    <CheckBox id="idCheckboxEnabled" selected="{= ${myModel>Enabled} === 'Yes' ? true : false }" enabled="false"/>
+                </f:content>
+            </f:SimpleForm>
+        </Panel>
+        <Panel id ="idPanel2" headerText="{i18n>panel2}" class ="sapUiResponsiveMargin" width ="auto">
+            <f:SimpleForm id ="idSimpleFormAddress" editable ="true" layout ="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" singleContainerFullSize="false" class="sapUiMediumMargin">
+                <f:content>
+                    <Label id = "idLblAddress" text = "{i18n>lbladdress}"/>
+                    <Text id = "idInptAddress" text = "{myModel>Address/0/Street} {myModel>Address/0/Zip} {myModel>Address/0/City} {myModel>Address/0/Country}"/>
+                    <Label id = "idLblEmail" text="{i18n>lblemail}"/>
+                    <Link id = "idInptEmail" href = "{parts: ['myModel>EID'], formatter: '.formatter.formatMail'}" text = "{parts: ['myModel>EID'], formatter: '.formatter.formatMail'}" press="handleEmailPress" accessibleRole="Button" />
+                    <Label id = "idLblSalesAmnt" text = "{i18n>lblsalesamount}" class = "sapUiSmallMarginBegin" />
+                    <Input id = "idInptSalesAmnt" value = "{ parts:[ 'myModel>SalesAmount', 'myModel>CurrencyCode'], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false}}" class = "sapUiSmallMarginBegin" enabled = "true" maxLength="8" />
+                </f:content>
+            </f:SimpleForm>
+        </Panel>
+        <Panel id ="idPanel3" headerText="{i18n>panel3}" class ="sapUiResponsiveMargin" width ="auto">
+            <List id = "idList1" items ="{path: 'DataModel>/Products'}" mode ="SingleSelectMaster" itemPress ="onSelectProduct">
+                <items >
+                    <ObjectListItem id = "idListItem1" title = "{DataModel>ProductName}" type = "Active" number ="{ parts: [ {path: 'DataModel>UnitPrice'}, {path: 'DataModel>CurrencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+                        numberUnit = "{DataModel>CurrencyCode}">
+                        <ObjectAttribute id = "idQty" text = "{DataModel>QuantityPerUnit}" />
+                        <ObjectAttribute id = "idStk" title = "{i18n>lblstockValue}" text = "{ parts: [ {path: 'DataModel>UnitPrice'}, {path: 'DataModel>UnitsInStock'}, {path: 'DataModel>CurrencyCode'} ], formatter: '.formatter.formatStockValue' }" />
+                    </ObjectListItem>
+                </items>
+            </List>
+        </Panel>
+        <Panel id ="idPanel4" headerText="{i18n>panel4}" class ="sapUiResponsiveMargin" width ="auto">
+            <f:SimpleForm id ="idSimpleFormProdDetails" editable ="true" layout ="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" singleContainerFullSize="false" class="sapUiMediumMargin">
+                <f:content>
+                    <Label id="f3lbl1" text="{i18n>lblproductid}"/>
+                    <Input id="f3npt1" value= "{DataModel>ProductID}"/>
+                    <Label id="f3lbl2" text="{i18n>lblproductname}"/>
+                    <Input id="f3npt2" value= "{DataModel>ProductName}"/>
+                    <Label id="f3lbl3" text="{i18n>lblquantityperunit}"/>
+                    <Input id="f3npt3" value= "{DataModel>QuantityPerUnit}"/>
+                    <Label id="f3lbl4" text="{i18n>lblunitprice}"/>
+                    <Input id="f3npt4" value= "{DataModel>UnitPrice}"/>
+                    <Label id="f3lbl5" text="{i18n>lblunitsinstock}"/>
+                    <Input id="f3npt5" value= "{DataModel>UnitsInStock}"/>
+                    <Label id="f3lbl6" text="{DataModel>lbldiscontinued}"/>
+                    <Input id="f3npt6" value= "{DataModel>Discontinued}"/>
+                </f:content>
+            </f:SimpleForm>
+        </Panel>
+    </Page>
+</mvc:View>S

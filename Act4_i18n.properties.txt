@@ -1,0 +1,31 @@
+# This is the resource bundle for sapips.training.jsonbinding
+
+#Texts for manifest.json
+
+#XTIT: Application name
+appTitle=JSON Binding
+
+#YDES: Application description
+appDescription=A Fiori application.
+#XTIT: Main view title
+title=JSON Binding
+
+#XHED: Heading
+panel1=Data Binding Basics
+panel2=Address Details
+panel3=Aggregation Binding
+panel4=Product Details
+
+#XFLD: Label
+lblbeid=EID
+lblenabled=Enabled
+lbladdress=Address
+lblemail=E-mail
+lblsalesamount=Sales Amount
+lblstockValue=Current Stock Value
+lblproductid=Product ID
+lblproductname=Product Name
+lblquantityperunit=Quantity Per Unit
+lblunitprice=Unit Price
+lblunitsinstock=Units In Stock
+lbldiscontinued=Discontinued

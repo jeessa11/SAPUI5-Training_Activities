@@ -1,0 +1,53 @@
+{
+    "Products": [
+            {
+            "ProductID": "PROD-1",
+            "ProductName": "Whittaker's",
+            "SupplierID": "SUPP-1",
+            "CategoryID": "CAT1",
+            "QuantityPerUnit": "10 Pieces x 1 Box",
+            "UnitPrice": 5,
+            "CurrencyCode": "USD",
+            "UnitsInStock": "221",
+            "UnitsOnOrder": "40 Boxes" ,
+            "ReorderLevel": "High",
+            "Discontinued": "No"
+            }, {
+            "ProductID": "PROD-2",
+            "ProductName": "Ritter Sport",
+            "SupplierID": "SUPP-2",
+            "CategoryID": "CAT2",
+            "QuantityPerUnit": "5 Pieces x 1 Box",
+            "UnitPrice": 10,
+            "CurrencyCode": "USD",
+            "UnitsInStock": "125",
+            "UnitsOnOrder": "5 Boxes",
+            "ReorderLevel": "High",
+            "Discontinued": "No"
+            }, {
+            "ProductID": "PROD-3",
+            "ProductName": "Guylian",
+            "SupplierID": "SUPP-3",
+            "CategoryID": "CAT3",
+            "QuantityPerUnit": "12 Pieces x 1 Box",
+            "UnitPrice": 25,
+            "CurrencyCode": "USD",
+            "UnitsInStock": "90",
+            "UnitsOnOrder": "43 Boxes",
+            "ReorderLevel": "High",
+            "Discontinued": "No"
+            }, {
+            "ProductID": "PROD-4",
+            "ProductName": "Richart",
+            "SupplierID": "SUPP4",
+            "CategoryID": "CAT4",
+            "QuantityPerUnit": "5 Pieces x 1 Box",
+            "UnitPrice": 12,
+            "CurrencyCode": "USD",
+            "UnitsInStock": "24",
+            "UnitsOnOrder": "6 Boxes",
+            "ReorderLevel": "High",
+            "Discontinued": "No"
+            }
+        ]
+    }  S

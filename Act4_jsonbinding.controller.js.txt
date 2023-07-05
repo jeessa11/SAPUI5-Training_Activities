@@ -1,0 +1,105 @@
+sap.ui.define([
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast",
+    'sap/m/library',
+    "sapips/training/jsonbinding/model/formatter"
+],
+    /** 
+    * @param {typeof sap.ui.core.mvc.Controller} Controller 
+    */
+    function (Controller, JSONModel, mobileLibrary, formatter) {
+        "use strict";
+        var URLHelper = mobileLibrary.URLHelper;
+        return Controller.extend("sapips.training.jsonbinding.controller.JSONBinding", {
+            formatter: formatter,
+            onInit: function () {
+                var oData =
+                {
+                    "employee":
+                        [
+                            {
+                                "EID": "jessa.musico",
+                                "Enabled": "Yes",
+                                "Address": [{
+                                    "Street": "Ma. Clara St.,",
+                                    "City": "Tagbilaran City,",
+                                    "Zip": "6300",
+                                    "Country": "USA"
+                                }],
+                                "SalesAmount": 250.00,
+                                "CurrencyCode": "USD"
+                            },
+                            {
+                                "EID": "jessa.pelecio",
+                                "Enabled": "Yes",
+                                "Address": [{
+                                    "Street": "Hagu St.",
+                                    "City": "Tokyo,",
+                                    "Zip": "7456",
+                                    "Country": "Japan"
+                                }],
+                                "SalesAmount": 400.00,
+                                "CurrencyCode": "USD"
+                            }
+                        ]
+                }
+                var oModel = new JSONModel();
+                oModel.setData(oData)
+                this.getView().setModel(oModel, "myModel");
+                var dataModel = this.getOwnerComponent().getModel("tableData");
+                this.getView().setModel(dataModel, "DataModel");
+            },
+            onPressInput: function (oEvent) {
+                var oInputEIDValue = this.getView().byId("idInptEID").getValue();
+                var oModel = this.getView().getModel("myModel");
+                var aEmployees = oModel.getProperty("/employee");
+                var oEmployeeData;
+                for (var i = 0; i < aEmployees.length; i++) {
+                    if (aEmployees[i].EID === oInputEIDValue) {
+                        oEmployeeData = aEmployees[i];
+                        break;
+                    }
+                }
+                var oSimpleForm = this.getView().byId("idSimpleFormEID");
+                var oSimpleForm2 = this.getView().byId("idSimpleFormAddress");
+                if (oEmployeeData) {
+                    oSimpleForm.bindElement({
+                        path: "/employee/" + i,
+                        model: "myModel"
+                    });
+                    oSimpleForm2.bindElement({
+                        path: "/employee/" + i,
+                        model: "myModel"
+                    });
+                } else {
+                    sap.m.MessageToast.show("EID Not Found!");
+                    var oCheckbox = this.getView().byId("idCheckboxEnabled");
+                    oCheckbox.setSelected(false);
+                    var oAddress = this.getView().byId("idInptAddress");
+                    oAddress.setText("");
+                    var oEmail = this.getView().byId("idInptEmail");
+                    oEmail.setText("");
+                    var oSalesAmnt = this.getView().byId("idInptSalesAmnt");
+                    oSalesAmnt.setValue("");
+                }
+            },
+            handleEmailPress: function (oEvent) {
+                var oEmailAdd = this.getView().byId("idInptEmail");
+                sap.m.URLHelper.triggerEmail(oEmailAdd.getText(), "Test email to", "Hi! How are you?");
+            },
+            onSelectProduct: function (oEvent) {
+                var oSource = oEvent.getSource();
+                var oSelectedItem = oSource.getSelectedItem();
+                var oBindingContext = oSelectedItem.getBindingContext("DataModel");
+                var sPath = oBindingContext.getPath();
+                var oSimpleForm = this.getView().byId("idSimpleFormProdDetails");
+                oSimpleForm.bindElement(
+                    {
+                        path: sPath,
+                        model: "DataModel"
+                    }
+                );
+            }
+        });
+    });
